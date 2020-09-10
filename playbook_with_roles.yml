@@ -16,19 +16,19 @@
        name: default-jre
        state: present
 
-- hosts: elastic  
+- hosts: elkstack  
   roles:
     - elastic
 
-- hosts: kibana
+- hosts: elkstack
   roles:
     - kibana
 
-- hosts: logstash
+- hosts: elkstack
   roles:
     - logstash
 
-- hosts: logstash
+- hosts: elkstack
   roles:
     - filebeat
 

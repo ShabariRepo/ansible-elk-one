@@ -16,7 +16,7 @@
        name: default-jre
        state: present
 
-- hosts: elastic
+- hosts: elkstack
   gather_facts: no
 
   tasks:
@@ -63,7 +63,7 @@
         name: elasticsearch
         state: started
 
-- hosts: kibana
+- hosts: elkstack
   gather_facts: no
 
   tasks:
@@ -89,7 +89,7 @@
       lineinfile:
         destfile: /etc/kibana/kibana.yml
         regexp: 'elasticsearch.hosts'
-        line: 'elasticsearch.hosts: ["http://192.168.28.71:9200"]'
+        line: 'elasticsearch.hosts: ["http://localhost:9200"]'
     
     - name: Start Kibana Service
       become: yes
@@ -97,7 +97,7 @@
         name: kibana
         state: started
 
-- hosts: logstash
+- hosts: elkstack
   gather_facts: no
 
   tasks:
@@ -129,7 +129,7 @@
              }
            }
            output {
-             elasticsearch { hosts => ["192.168.28.71:9200"]
+             elasticsearch { hosts => ["localhost:9200"]
              }
            }
 
